@@ -1,4 +1,4 @@
-package main
+package sonar
 
 import (
 	"fmt"
@@ -18,6 +18,12 @@ func NewRegistryClient(uri string, timeout time.Duration) *RegistryClient {
 			Timeout: timeout,
 		}, uri: uri,
 	}
+}
+
+func (r *RegistryClient) Check() int {
+	resp := r.Get("")
+
+	return resp.StatusCode
 }
 
 func (r *RegistryClient) Get(endpoint string) *http.Response {

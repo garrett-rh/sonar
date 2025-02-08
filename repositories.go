@@ -1,4 +1,4 @@
-package main
+package sonar
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ type Repositories struct {
 func (r *RegistryClient) GetRepositories() Repositories {
 	var repositories Repositories
 
-	resp := r.Get("/v2/_catalog")
+	resp := r.Get("/_catalog")
 
 	err := json.NewDecoder(resp.Body).Decode(&repositories)
 	if err != nil {
@@ -20,5 +20,4 @@ func (r *RegistryClient) GetRepositories() Repositories {
 	}
 
 	return repositories
-
 }
